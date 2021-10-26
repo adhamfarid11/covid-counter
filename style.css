@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content-provinsi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #eaeaea;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.content-provinsi {
+    justify-content: center;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+}
+
+.card.text-white.bg-warning.mb-3 {
+    margin: 1em;
+    width: 25vw;
+    border-radius: 10px;
+}
+.card.text-white.bg-success.mb-3 {
+    margin: 1em;
+    width: 25vw;
+    border-radius: 10px;
+}
+.card.text-white.bg-danger.mb-3 {
+    margin: 1em;
+    width: 25vw;
+    border-radius: 10px;
+}
+
+p,
+h5 {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+}
+p {
+    font-size: 0.9em;
+}
+h5 {
+    font-size: 2em;
+}
+
+/* css buat bagian searc bar */
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button {
+    margin: 0.5em;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border: none;
+    outline: none;
+    background: #7c7c7c2b;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    background: #7c7c7c6b;
+}
+
+input.search-bar {
+    border: none;
+    padding: 0.4em 1em;
+    outline: none;
+    border-radius: 26px;
+    background-color: #7c7c7c2b;
+    color: black;
+    font-family: inherit;
+    font-size: 105%;
+    width: calc(50% - 100px);
+}
+
+.provinsi.loading {
+    visibility: hidden;
+    max-height: 10px;
+    position: relative;
+}
+
+.provinsi.loading:after {
+    visibility: visible;
+    content: "Cari provinsimu di search box... ";
+    color: #7c7c7c;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* content indonesia */
+.content-indonesia,
+.content-global {
+    display: flex;
+    align-items: center;
+    height: 70vh;
+    background-color: #fff;
+}
+
+.cards-indonesia {
+    display: block;
+}
+
+.centered-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    max-width: 50vw;
+}
+
+.text-indo {
+    position: relative;
+    text-align: center;
+    width: 50vw;
+}
+
+.text-indo h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+
+.svg-indo {
+    width: 60%;
+    z-index: 0;
+}
+
+.svg-globe {
+    width: 40%;
+    z-index: 0;
+}
