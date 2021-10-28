@@ -5,6 +5,12 @@
     padding: 0;
 }
 
+body {
+    display: block;
+    background-color: #eaeaea;
+}
+
+.content-wilayah,
 .content-provinsi {
     display: flex;
     justify-content: center;
@@ -13,13 +19,38 @@
     background-color: #eaeaea;
 }
 
-h1 {
+.content-wilayah.no-detect {
+    visibility: hidden;
+    margin-top: 5vh;
+    max-height: 10vh;
+    position: relative;
+    background: #eaeaea;
+}
+
+.content-wilayah.no-detect:after {
+    visibility: visible;
+    content: "Yah provinsimu yang kamu daftarkan tidak terdeteksi :(\ATapi kamu masih bisa mencari provinsimu di bawah :D";
+    text-align: center;
+    white-space: pre-wrap;
+    color: #7c7c7c;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content-provinsi.loading {
+    max-height: 20vh;
+}
+
+h1,
+h4 {
     text-align: center;
     font-family: "Poppins", sans-serif;
 }
 
-.content-provinsi {
-    justify-content: center;
+h4 {
+    font-size: 120%;
 }
 
 .cards {
@@ -44,7 +75,8 @@ h1 {
 }
 
 p,
-h5 {
+h5,
+a {
     font-family: "Poppins", sans-serif;
     margin: 0;
 }
@@ -100,7 +132,7 @@ input.search-bar {
 
 .provinsi.loading:after {
     visibility: visible;
-    content: "Cari provinsimu di search box... ";
+    /* content: "Cari provinsi di search box... "; */
     color: #7c7c7c;
     position: absolute;
     top: 50%;
@@ -151,4 +183,82 @@ input.search-bar {
 .svg-globe {
     width: 40%;
     z-index: 0;
+}
+
+/* end of all covid content */
+
+/* overlay */
+#overlay {
+    position: fixed;
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#overlay-link {
+    padding: 10px 0;
+    text-align: center;
+    background-color: white;
+}
+
+#overlay-link a {
+    color: grey;
+    font-size: 12px;
+}
+
+#overlay-link a:hover {
+    color: #3366bb;
+}
+
+.overlay-content {
+    width: 40vw;
+    height: 40vh;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.overlay-content h1 {
+    padding-top: 7vh;
+}
+
+.overlay-content h4 {
+    margin: 2vh 0 0 0;
+}
+
+.btn-section {
+    display: flex;
+    justify-content: center;
+}
+
+.overlay-btn {
+    margin-top: 5vh;
+    border: 1px solid white;
+    color: white;
+}
+
+.overlay-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid white;
+    color: white;
 }
