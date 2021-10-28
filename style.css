@@ -5,6 +5,64 @@
     padding: 0;
 }
 
+/* tambah */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.3)
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    height: 0px;
+}
+
+header a:hover {
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block; /*biar kesamping ga kebawah*/
+    padding: 0px 20px;
+}
+
+.nav-links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav-links li a:hover {
+    color: white;
+}
+
+li,
+a {
+    font-size: 16px;
+}
+ul {
+    padding-top: 18px;
+}
+
+header a {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: rgba(225, 225, 225, 1);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease 0s;
+}
+
+/*end of header*/
+
 body {
     display: block;
     background-color: #eaeaea;
