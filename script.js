@@ -9,21 +9,37 @@ let provinsi = {
         .then((data) => this.displayCoronaProvinsi(data, province))
     },
     displayCoronaProvinsi : function (data, province) {
+        var flag = false;
         const { features } = data;
         features.map(feature => {
-            if (feature.attributes.Provinsi.toLowerCase() == province.toLowerCase()) {
+           if (feature.attributes.Provinsi.toLowerCase() == province.toLowerCase()) {
                 const { Kasus_Posi, Kasus_Semb, Kasus_Meni, Provinsi} = feature.attributes;
                 console.log(Kasus_Posi, Kasus_Semb, Kasus_Meni, Provinsi);
-                document.querySelector(".h1-provinsi").innerText = "Kasus di Provinsi " + Provinsi;
-                document.querySelector(".positif").innerText = Kasus_Posi.toLocaleString();
-                document.querySelector(".sembuh").innerText = Kasus_Semb.toLocaleString();
-                document.querySelector(".meninggal").innerText = Kasus_Meni.toLocaleString();
+                document.querySelector(".h1-provinsi").innerText = "Data Covid " + Provinsi;
+                document.querySelector(".positif-provinsi").innerText = Kasus_Posi.toLocaleString();
+                document.querySelector(".sembuh-provinsi").innerText = Kasus_Semb.toLocaleString();
+                document.querySelector(".meninggal-provinsi").innerText = Kasus_Meni.toLocaleString();
                 document.querySelector(".provinsi").classList.remove("loading");
+                document.querySelector(".content-provinsi").classList.remove("loading");
+                flag = true;
+                return;
             }
         }) 
+        
+        if (flag != true) {
+            popUpGaada(province);
+            document.querySelector(".provinsi").classList.add("loading");
+            document.querySelector(".content-provinsi").classList.add("loading");
+        }
     },
     search : function () {
-        this.fetchCorona(document.querySelector(".search-bar").value);
+        var x = document.querySelector(".search-bar").value;
+        if (x.toLowerCase() == "jakarta") {
+            this.fetchCorona("dki jakarta");
+        } else {
+            this.fetchCorona(x);
+        }
+        
     }
 }
 
@@ -54,6 +70,10 @@ let globalAndIndonesia = {
 globalAndIndonesia.fetchCorona();
 // end of  manggil fetch corona buat data global dan indonesia
 
+function popUpGaada(province) {
+    alert("Maaf, provinsi " + province.toUpperCase() +  " tidak tersedia di dalam database kami...");
+}
+
 
 
 // search result buat provinsi
@@ -69,3 +89,14 @@ document.querySelector(".search-bar").addEventListener("keyup", function(event){
     }
 })
 // end of search result buat provinsi
+
+
+
+// bagian overlay 
+function on() {
+    document.getElementById("overlay").style.display = "flex";
+  }
+  
+  function off() {
+    document.getElementById("overlay").style.display = "none";
+  }
