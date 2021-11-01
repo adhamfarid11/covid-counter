@@ -1,7 +1,8 @@
 
 let provinsi = {
     fetchCorona : function (province) {
-        fetch('https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json')
+        // fetch('https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json')
+        fetch('https://apicovid19indonesia-v2.vercel.app/api/indonesia/provinsi/more')
         // fetch('https://vaksincovid19-api.vercel.app/api/vaksin') data vaksin
         // fetch('https://apicovid19indonesia-v2.vercel.app/api/indonesia/provinsi')
         // https://apicovid19indonesia-v2.vercel.app/api  ini cara aksesnya gmn
@@ -10,38 +11,47 @@ let provinsi = {
     },
     displayCoronaProvinsi : function (data, province) {
         var flag = false;
-        const { features } = data;
-        features.map(feature => {
-           if (feature.attributes.Provinsi.toLowerCase() == province.toLowerCase()) {
-                const { Kasus_Posi, Kasus_Semb, Kasus_Meni, Provinsi} = feature.attributes;
-                console.log(Kasus_Posi, Kasus_Semb, Kasus_Meni, Provinsi);
-                document.querySelector(".h1-provinsi").innerText = "Data Covid " + Provinsi;
-                document.querySelector(".positif-provinsi").innerText = Kasus_Posi.toLocaleString();
-                document.querySelector(".sembuh-provinsi").innerText = Kasus_Semb.toLocaleString();
-                document.querySelector(".meninggal-provinsi").innerText = Kasus_Meni.toLocaleString();
+        data.map(i => {
+            if (i.provinsi.toLowerCase() == province.toLowerCase()) {
+                const { kasus, sembuh, meninggal, provinsi} = i;
+                document.querySelector(".h1-provinsi").innerText = "Kasus di Provinsi " + provinsi;
+                document.querySelector(".positif").innerText = kasus.toLocaleString();
+                document.querySelector(".sembuh").innerText = sembuh.toLocaleString();
+                document.querySelector(".meninggal").innerText = meninggal.toLocaleString();
                 document.querySelector(".provinsi").classList.remove("loading");
-                document.querySelector(".content-provinsi").classList.remove("loading");
                 flag = true;
                 return;
             }
         }) 
-        
+
         if (flag != true) {
             popUpGaada(province);
             document.querySelector(".provinsi").classList.add("loading");
             document.querySelector(".content-provinsi").classList.add("loading");
         }
+
     },
     search : function () {
         var x = document.querySelector(".search-bar").value;
         if (x.toLowerCase() == "jakarta") {
             this.fetchCorona("dki jakarta");
-        } else {
+            // cuacaKode.fetchCuaca("dki jakarta");
+        } else if (x.toLowerCase() == "jogja" || x.toLowerCase() == "yogya" || x.toLowerCase() == "yogyakarta")  {
+            this.fetchCorona("daerah istimewa yogyakarta");
+            // cuacaKode.fetchCuaca("diyogyakarta");
+        }
+        else {
             this.fetchCorona(x);
         }
         
     }
 }
+
+function popUpGaada(province) {
+    alert("Maaf, provinsi " + province.toUpperCase() +  " tidak tersedia di dalam database kami...");
+}
+
+
 
 let globalAndIndonesia = {
     fetchCorona : function () {
@@ -70,10 +80,6 @@ let globalAndIndonesia = {
 globalAndIndonesia.fetchCorona();
 // end of  manggil fetch corona buat data global dan indonesia
 
-function popUpGaada(province) {
-    alert("Maaf, provinsi " + province.toUpperCase() +  " tidak tersedia di dalam database kami...");
-}
-
 
 
 // search result buat provinsi
@@ -89,14 +95,3 @@ document.querySelector(".search-bar").addEventListener("keyup", function(event){
     }
 })
 // end of search result buat provinsi
-
-
-
-// bagian overlay 
-function on() {
-    document.getElementById("overlay").style.display = "flex";
-  }
-  
-  function off() {
-    document.getElementById("overlay").style.display = "none";
-  }
