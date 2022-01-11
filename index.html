@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Covid App</title>
+        <title>Covid App | Personal Project</title>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -12,57 +13,351 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="style.css" type="text/css" />
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <a href="#">Adham Farid</a>
-            <nav>
-                <ul class="nav-links">
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            <li>
-                                <a href="https://adhamfarid11.github.io/popdam/"
-                                    >POPDAM</a
-                                >
-                            </li>
-                        </div>
-                    </div>
+        <script
+            src="https://kit.fontawesome.com/6e024d5b6e.js"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
 
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            <li>
-                                <a
-                                    href="https://adhamfarid11.github.io/weather-app/"
-                                    >Weather App</a
-                                >
-                            </li>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <li>
-                            <a
-                                href="https://adhamfarid11.github.io/covid-counter/"
-                                >COVID Counter</a
+            .content {
+                width: 1250px;
+                margin: auto;
+                padding: 0px 30px;
+            }
+            .navbar {
+                position: fixed;
+                z-index: 5;
+                width: 100%;
+                padding: 25px 0;
+                transition: all 0.3s ease;
+                margin-top: -100px;
+            }
+            .navbar.sticky {
+                padding: 10px 0;
+                background: #1b1b1b;
+                box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+            }
+            .navbar.sticky a {
+                font-size: 15px;
+            }
+
+            .navbar .content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .navbar .logo {
+                width: 35px;
+                filter: invert(55%) sepia(13%) saturate(1996%)
+                    hue-rotate(198deg) brightness(102%) contrast(93%);
+                transition: all 0.3s ease;
+            }
+            .logo.shrink {
+                width: 20px;
+            }
+            .navbar .menu-list {
+                display: inline-flex;
+                padding-top: 15px;
+            }
+            .menu-list li {
+                list-style: none;
+            }
+            .menu-list li a {
+                color: #fff;
+                font-size: 16px;
+                font-weight: 300;
+                margin-left: 25px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+            .menu-list li a:hover {
+                color: #828cf6;
+            }
+            .navbar .content .menu-list .active {
+                font-weight: 400;
+                color: #828cf6;
+            }
+
+            .icon {
+                color: #fff;
+                font-size: 20px;
+                cursor: pointer;
+                display: none;
+            }
+            .icon.cancel-btn {
+                position: absolute;
+                right: 30px;
+                top: 20px;
+            }
+            .navbar.sticky .icon.cancel-btn {
+                top: 10px;
+            }
+
+            @media (max-width: 1100px) {
+                .navbar {
+                    padding: 10px 30px;
+                }
+                .navbar.sticky {
+                    padding: 10px 30px 10px 40px;
+                }
+            }
+            @media (max-width: 700px) {
+                .navbar {
+                    padding-left: 30px;
+                }
+            }
+
+            @media (max-width: 868px) {
+                body.disabledScroll {
+                    overflow: hidden;
+                }
+                .icon {
+                    display: block;
+                    height: 50px;
+                    width: 50px;
+                    text-align: center;
+                    line-height: 50px;
+                    border-radius: 50%;
+                    z-index: 9;
+                }
+                .icon.cancel-btn {
+                    display: none;
+                }
+                .icon.cancel-btn.show {
+                    display: block;
+                }
+                .icon.hide {
+                    display: none;
+                }
+                .navbar .menu-list {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 70vh;
+                    width: 100%;
+                    background-color: #181818fa;
+                    display: block;
+                    padding: 40px 0;
+                    text-align: center;
+                    clip-path: circle(
+                        25px at calc(100% - 55px) calc(0% + 50px)
+                    );
+                    transition: all 0.3s ease;
+                }
+
+                .navbar.sticky .menu-list {
+                    clip-path: circle(
+                        25px at calc(100% - 55px) calc(0% + 35px)
+                    );
+                }
+                .navbar .menu-list.active {
+                    clip-path: circle(75%);
+                }
+                .navbar .menu-list li {
+                    margin-top: 45px;
+                }
+                .navbar .menu-list li a {
+                    font-size: 23px;
+                }
+                @media (max-width: 570px) {
+                    .navbar .logo {
+                        width: 25px;
+                    }
+                    .navbar .logo.shrink {
+                        width: 20px;
+                    }
+                    .navbar {
+                        padding-right: 0px;
+                        padding-left: 15px;
+                    }
+                    .navbar.sticky {
+                        padding-right: 0px;
+                        padding-left: 15px;
+                    }
+                }
+                @media (max-width: 420px) {
+                    .icon {
+                        width: 0;
+                    }
+                    .navbar {
+                        padding-right: 15px;
+                        padding-left: 0px;
+                    }
+                    .navbar.sticky {
+                        padding-right: 15px;
+                        padding-left: 0px;
+                    }
+                }
+            }
+        </style>
+    </head>
+
+    <nav class="navbar">
+        <div class="content">
+            <img src="images/logo2.svg" alt="" class="logo" />
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                <li><a href="#">Popdam</a></li>
+                <li><a href="#" class="active">Covid Counter</a></li>
+                <li><a href="#">Weather App</a></li>
+                <li><a href="#">About Me</a></li>
+            </ul>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        const body = document.querySelector("body");
+        const logo = document.querySelector(".logo");
+        const navbar = document.querySelector(".navbar");
+        const menu = document.querySelector(".menu-list");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        menuBtn.onclick = () => {
+            menu.classList.add("active");
+            menuBtn.classList.add("hide");
+            cancelBtn.classList.add("show");
+            body.classList.add("disabledScroll");
+        };
+        cancelBtn.onclick = () => {
+            menu.classList.remove("active");
+            menuBtn.classList.remove("hide");
+            cancelBtn.classList.remove("show");
+            body.classList.remove("disabledScroll");
+        };
+
+        window.onscroll = function () {
+            if (this.scrollY > 20) {
+                navbar.classList.add("sticky");
+                logo.classList.add("shrink");
+            } else {
+                navbar.classList.remove("sticky");
+                logo.classList.remove("shrink");
+            }
+        };
+        // window.onscroll = () => {
+        //     // if (this.scrollY > 20) {
+        //     //     navbar.classList.add("sticky");
+        //     //     logo.classList.add("shrink");
+        //     // } else {
+        //     //     navbar.classList.remove("sticky");
+        //     //     logo.classList.remove("shrink");
+        //     // }
+        //     this.scrollY > 20
+        //         ? navbar.classList.add("sticky") && logo.classList.add("shrink")
+        //         : navbar.classList.remove("sticky") &&
+        //           logo.classList.remove("shrink");
+        // };
+    </script>
+    <!--end of Navigation bar-->
+
+    <body id="body" onload="getLocation()">
+        <!-- sementara kyk gini  -->
+        <!-- start of content wilayahmu -->
+        <div class="content-wilayah no-detect">
+            <h4 class="h4-wilayah">
+                Saat ini kamu terdeteksi di provinsi
+                <span class="mySpan">DKI Jakarta</span>
+            </h4>
+            <div class="outter-content">
+                <div class="first-outter">
+                    <div class="center-content-provinsi">
+                        <h1 class="h1-wilayah">Kasus di Provinsimu adalah</h1>
+                        <div class="cards">
+                            <!-- card positif -->
+                            <div
+                                class="card text-white bg-warning mb-3 cards-wilayah"
+                                style="max-width: 25vw"
                             >
-                        </li>
-                        <div class="dropdown-content">
-                            <!-- <li><a href="">Add Notes</a></li> -->
+                                <div class="card-body">
+                                    <p class="card-text">Total Positif</p>
+                                    <h5
+                                        class="card-title positif-wilayah"
+                                        style="margin: 0"
+                                    >
+                                        <b>-</b>
+                                    </h5>
+                                    <p class="card-text">Orang</p>
+                                </div>
+                            </div>
+                            <!-- card sembuh -->
+                            <div
+                                class="card text-white bg-success mb-3 cards-wilayah"
+                                style="max-width: 25vw"
+                            >
+                                <div class="card-body">
+                                    <p class="card-text">Total Sembuh</p>
+                                    <h5
+                                        class="card-title sembuh-wilayah"
+                                        style="margin: 0"
+                                        data-target="0"
+                                    >
+                                        <b>-</b>
+                                    </h5>
+                                    <p class="card-text">Orang</p>
+                                </div>
+                            </div>
+                            <!-- card meninggal -->
+                            <div
+                                class="card text-white bg-danger mb-3 cards-wilayah"
+                                style="max-width: 25vw"
+                            >
+                                <div class="card-body">
+                                    <p class="card-text">Total Meninggal</p>
+                                    <h5
+                                        class="card-title meninggal-wilayah"
+                                        style="margin: 0"
+                                        data-target="0"
+                                    >
+                                        <b>-</b>
+                                    </h5>
+                                    <p class="card-text">Orang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="last-update wilayah">Last Update: 202020</p>
+
+                        <!-- end of cards -->
+                    </div>
+                </div>
+                <div class="prediksi-cuaca">
+                    <div class="card">
+                        <div class="weather loading">
+                            <h4 class="city">Prediksi Cuaca Jakarta</h4>
+                            <p class="jam-paragraf">dalam -+ 3 Jam</p>
+                            <h2 class="temp">51°C</h2>
+                            <div class="flex">
+                                <!-- <img
+                                src="https://openweathermap.org/img/wn/50n.png"
+                                alt=""
+                                class="icon"
+                            /> -->
+                                <div class="description">Cloudy</div>
+                            </div>
+
+                            <h6>Himbuauan</h6>
+                            <p class="isi-saran">Ini isi dari sarannya</p>
+                            <p>Sumber: BMKG</p>
                         </div>
                     </div>
-                    <div class="colorwhite">
-                        <img
-                            src="{% static 'images/colorwhite1.png' %}"
-                            alt=""
-                        />
-                    </div>
-                </ul>
-            </nav>
-        </header>
-        <!-- start of all covid content -->
-        
-   
-        
+                </div>
+            </div>
+            <!-- end of outter-content -->
+        </div>
+        <!-- end of content-wilayahmu -->
+        <!-- end of content-wilayahmu -->
+
         <!-- start of content provinsi -->
         <div class="content-provinsi loading">
             <div class="center-content-provinsi">
@@ -70,22 +365,37 @@
                     <input
                         type="text"
                         class="search-bar"
-                        placeholder="Cari data COVID per provinsi..."
+                        placeholder="Cari provinsi..."
                     />
+                    <!-- <button>
+                    <svg class="search-icon" viewBox="0 0 20 20">
+                        <path
+                            d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"
+                        ></path>
+                    </svg>
+                </button> -->
                     <button>
-                        <svg class="search-icon" viewBox="0 0 20 20">
+                        <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 1024 1024"
+                            height="1.5em"
+                            width="1.5em"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
                             <path
-                                d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"
+                                d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
                             ></path>
                         </svg>
                     </button>
                 </div>
                 <div class="provinsi loading">
-                    <h1 class="h1-provinsi">Kasus di Provinsi Jakarta</h1>
+                    <h1 class="h1-provinsi">Data Covid di Jakarta</h1>
                     <div class="cards">
                         <!-- card positif -->
                         <div
-                            class="card text-white bg-warning mb-3"
+                            class="card text-white bg-warning mb-3 cards-provinsi"
                             style="max-width: 25vw"
                         >
                             <div class="card-body">
@@ -101,7 +411,7 @@
                         </div>
                         <!-- card sembuh -->
                         <div
-                            class="card text-white bg-success mb-3"
+                            class="card text-white bg-success mb-3 cards-provinsi"
                             style="max-width: 25vw"
                         >
                             <div class="card-body">
@@ -118,7 +428,7 @@
                         </div>
                         <!-- card meninggal -->
                         <div
-                            class="card text-white bg-danger mb-3"
+                            class="card text-white bg-danger mb-3 cards-provinsi"
                             style="max-width: 25vw"
                         >
                             <div class="card-body">
@@ -134,6 +444,7 @@
                             </div>
                         </div>
                     </div>
+                    <p class="last-update provinsi">Last Update: 202020</p>
                 </div>
                 <!-- end of cards -->
             </div>
@@ -144,7 +455,7 @@
         <div class="content-indonesia">
             <div class="text-indo">
                 <img src="images/indonesia.svg" alt="" class="svg-indo" />
-                <h1><b> Data Covid Indonesia </b></h1>
+                <h1>Data Covid Indonesia</h1>
             </div>
             <div class="centered-cards">
                 <div class="cards-indonesia">
@@ -258,9 +569,9 @@
                     </div>
                 </div>
             </div>
-            <div class="text-indo">
+            <div class="text-global">
                 <img src="images/globe.svg" alt="" class="svg-globe" />
-                <h1><b> Data Covid Global </b></h1>
+                <h1>Data Covid Global</h1>
             </div>
         </div>
         <!-- end of all covid content -->
@@ -275,20 +586,29 @@
             <div class="inner-overlay">
                 <div class="overlay-content">
                     <h1>Link API</h1>
-                    <h4>Global COVID API:</h4>
-                    <a
-                        href="https://api.quarantine.country/api/v1/summary/latest"
-                        >https://api.quarantine.country/api/v1/summary/latest</a
-                    >
-                    <h4>Indonesia Province COVID API:</h4>
-                    <a href="https://bit.ly/API-Covid-Provinsi"
-                        >https://bit.ly/API-Covid-Provinsi</a
-                    >
+                    <li>
+                        <a href="https://covid19.mathdro.id/api"
+                            >Global COVID API</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://apicovid19indonesia-v2.vercel.app/api/indonesia/provinsi/more"
+                            >Indonesia Province COVID API</a
+                        >
+                    </li>
+                    <li>
+                        <a href="https://data.bmkg.go.id/prakiraan-cuaca/"
+                            >Weather Prediction BMKG API</a
+                        >
+                    </li>
                 </div>
                 <div class="btn-section">
-                    <button class="overlay-btn">&#215;</button>
+                    <button class="overlay-button">&#215;</button>
                 </div>
             </div>
         </div>
+        <script src="script.js" defer></script>
+        <div class="none"></div>
     </body>
 </html>
