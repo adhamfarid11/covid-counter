@@ -1,25 +1,164 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 * {
     margin: 0;
     padding: 0;
 }
 
+body {
+    display: block;
+    background-color: #181818;
+}
+
+.content-wilayah,
 .content-provinsi {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    background-color: #eaeaea;
+    height: 350px;
+    background-color: #181818;
 }
 
-h1 {
+.content-wilayah.no-detect {
+    visibility: hidden;
+    margin-top: 100px;
+    max-height: 100px;
+    position: relative;
+    background-color: #181818;
+}
+
+.content-wilayah.no-detect:after {
+    visibility: visible;
+
+    content: 'Yahh lokasimu saat ini tidak terdeteksi :(\AKlik "Allow" untuk melihat section ini. \ATapi kamu masih bisa mencari provinsimu di bawah :D';
+
+    text-align: center;
+    white-space: pre-wrap;
+    color: #7c7c7c;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.first-outter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wilayah {
+    margin-top: 100px;
+    margin-bottom: 0;
+    display: block;
+}
+
+.h1-wilayah {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 30px;
+}
+
+.h1-wilayah,
+.h4-wilayah,
+.h1-provinsi {
+    color: white;
+}
+.outter-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* start of konten cuaca */
+.prediksi-cuaca {
+    min-width: 10vw;
+}
+.prediksi-cuaca .card {
+    /* background: #000000d0; */
+    background: rgba(255, 255, 255, 0.05);
+    /* background: #181818; */
+    color: white;
+    padding: 1em;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 30vw;
+    max-height: 45vh;
+    margin: 1em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.prediksi-cuaca h4 {
+    font-size: 20px;
+}
+
+.prediksi-cuaca h2 {
+    margin-bottom: -40px;
+    font-size: 35px;
+}
+
+.weather h6 {
+    margin-top: 5px;
+    text-align: left;
+}
+
+.prediksi-cuaca .flex {
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+}
+
+.prediksi-cuaca .description {
+    text-transform: capitalize;
+    font-size: 25px;
+    margin-left: 0px;
+    margin-top: 50px;
+    padding-top: 30px;
+    text-align: left;
+}
+
+#jam {
+    color: rgb(94, 93, 93);
+    margin-top: -9px;
+    text-align: end;
+}
+
+.prediksi-cuaca p {
+    color: rgb(94, 93, 93);
+    font-size: 12px;
+    text-align: end;
+}
+
+.prediksi-cuaca .isi-saran {
+    text-align: start;
+    margin-bottom: -10px;
+    color: rgb(201, 198, 198);
+}
+
+.prediksi-cuaca .flex {
+    background-repeat: no-repeat;
+    background-image: 150px;
+    background-position: right center;
+}
+
+.prediksi-cuaca img {
+    width: 100px;
+    z-index: -1;
+}
+
+h1,
+h4 {
     text-align: center;
     font-family: "Poppins", sans-serif;
 }
 
-.content-provinsi {
-    justify-content: center;
+h4 {
+    font-size: 120%;
+}
+
+span {
+    font-weight: 600;
 }
 
 .cards {
@@ -29,22 +168,35 @@ h1 {
 
 .card.text-white.bg-warning.mb-3 {
     margin: 1em;
-    width: 25vw;
+    width: 250px;
     border-radius: 10px;
 }
 .card.text-white.bg-success.mb-3 {
     margin: 1em;
-    width: 25vw;
+    width: 250px;
     border-radius: 10px;
 }
 .card.text-white.bg-danger.mb-3 {
     margin: 1em;
-    width: 25vw;
+    width: 250px;
     border-radius: 10px;
 }
 
+.content-wilayah .card.text-white.bg-warning.mb-3,
+.content-wilayah .card.text-white.bg-success.mb-3,
+.content-wilayah .card.text-white.bg-danger.mb-3 {
+    width: 200px;
+}
+
+.card.text-white.bg-warning.mb-3.cards-provinsi,
+.card.text-white.bg-success.mb-3.cards-provinsi,
+.card.text-white.bg-danger.mb-3.cards-provinsi {
+    width: 200px;
+}
+
 p,
-h5 {
+h5,
+a {
     font-family: "Poppins", sans-serif;
     margin: 0;
 }
@@ -60,10 +212,10 @@ h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
 }
 
-button {
+.overlay-button,
+.search button {
     margin: 0.5em;
     border-radius: 50%;
     width: 44px;
@@ -86,10 +238,15 @@ input.search-bar {
     outline: none;
     border-radius: 26px;
     background-color: #7c7c7c2b;
-    color: black;
+    /* color: black; */
+    color: white;
     font-family: inherit;
     font-size: 105%;
     width: calc(50% - 100px);
+}
+
+.content-provinsi.loading {
+    max-height: 20vh;
 }
 
 .provinsi.loading {
@@ -100,12 +257,21 @@ input.search-bar {
 
 .provinsi.loading:after {
     visibility: visible;
-    content: "Cari provinsimu di search box... ";
+    /* content: "Cari provinsi di search box... "; */
     color: #7c7c7c;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.last-update {
+    color: grey;
+    padding-left: 20px;
+}
+
+.last-update.provinsi {
+    text-align: center;
 }
 
 /* content indonesia */
@@ -114,7 +280,8 @@ input.search-bar {
     display: flex;
     align-items: center;
     height: 70vh;
-    background-color: #fff;
+    background-color: #f4f6fa;
+    /* background-color: #fff; */
 }
 
 .cards-indonesia {
@@ -129,13 +296,15 @@ input.search-bar {
     max-width: 50vw;
 }
 
-.text-indo {
+.text-indo,
+.text-global {
     position: relative;
     text-align: center;
     width: 50vw;
 }
 
-.text-indo h1 {
+.text-indo h1,
+.text-global h1 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -151,4 +320,426 @@ input.search-bar {
 .svg-globe {
     width: 40%;
     z-index: 0;
+}
+
+/* end of all covid content */
+
+/* overlay */
+#overlay {
+    position: fixed;
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#overlay-link {
+    padding: 10px 0;
+    text-align: center;
+    background-color: #f4f6fa;
+    /* background-color: white; */
+}
+
+#overlay-link a {
+    color: grey;
+    font-size: 14px;
+}
+
+#overlay-link a:hover {
+    color: #3366bb;
+}
+
+.overlay-content {
+    width: 400px;
+    height: 220px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.overlay-content li {
+    list-style: none;
+}
+
+.overlay-content h1 {
+    padding-top: 7vh;
+}
+
+.overlay-content h1 {
+    font-size: 30px;
+}
+
+.overlay-content a {
+    font-size: 18px;
+}
+
+.overlay-content h4 {
+    margin: 2vh 0 0 0;
+}
+
+.btn-section {
+    display: flex;
+    justify-content: center;
+}
+
+.overlay-button {
+    padding: 10px;
+    margin-top: 5vh;
+    border: 1px solid white;
+    border-radius: 100%;
+    color: white;
+}
+
+.overlay-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid white;
+    color: white;
+}
+
+/* tambahin ini di file lokal kalian */
+.nav_links_custom #home-override a {
+    color: white;
+    font-weight: 200;
+    transition: all 0.3s ease 0s;
+}
+.nav_links_custom #home-override a:hover {
+    color: #828cf6;
+}
+.nav_links_custom .data-covid-menu a {
+    color: #828cf6;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+.nav_links_custom .data-covid-menu a:hover {
+    color: white;
+}
+
+@media (max-width: 1000px) {
+    .content-wilayah {
+        height: 250px;
+    }
+    .content-wilayah.no-detect:after {
+        font-size: 14px;
+    }
+    .content-wilayah .h4-wilayah {
+        text-align: center;
+    }
+    .outter-content .first-outter .h1-wilayah {
+        text-align: center;
+        padding: 0;
+    }
+    .outter-content .first-outter .last-update {
+        text-align: center;
+        padding: 0;
+    }
+    .prediksi-cuaca {
+        display: none;
+    }
+    .centered-cards {
+        max-width: 100vw;
+    }
+    .content-indonesia,
+    .content-global {
+        padding: 0px 50px;
+    }
+
+    .content-indonesia,
+    .content-global {
+        display: flex;
+        padding: 0;
+        justify-content: center;
+        height: 60vh;
+    }
+    .content-indonesia .card-title,
+    .content-global .card-title {
+        font-size: 30px;
+    }
+
+    .content-indonesia {
+        flex-direction: column;
+    }
+
+    .content-global {
+        flex-direction: column-reverse;
+    }
+
+    .centered-cards {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cards-indonesia,
+    .cards-global {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .text-indo,
+    .text-global {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 50vw;
+    }
+    /*overlay content*/
+    #overlay-link a {
+        font-size: 14px;
+    }
+    .overlay-content {
+        width: 300px;
+        height: 220px;
+    }
+    .overlay-content h1 {
+        font-size: 26px;
+    }
+    .overlay-content a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 750px) {
+    .content-wilayah.no-detect:after {
+        font-size: 12px;
+    }
+    .content-indonesia,
+    .content-global {
+        height: 50vh;
+    }
+    .content-indonesia .card-title,
+    .content-global .card-title {
+        font-size: 18px;
+    }
+    .text-indo {
+        width: 90vw;
+    }
+    .text-global {
+        width: 50vh;
+    }
+
+    .content-wilayah .card.text-white.bg-warning.mb-3,
+    .content-wilayah .card.text-white.bg-success.mb-3,
+    .content-wilayah .card.text-white.bg-danger.mb-3,
+    .card.text-white.bg-warning.mb-3.cards-provinsi,
+    .card.text-white.bg-success.mb-3.cards-provinsi,
+    .card.text-white.bg-danger.mb-3.cards-provinsi,
+    .card.text-white.bg-warning.mb-3,
+    .card.text-white.bg-success.mb-3,
+    .card.text-white.bg-danger.mb-3 {
+        width: 140px;
+        margin: 0 10px 0 10px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+    .card-body h5 {
+        font-size: 24px;
+    }
+    .card-body p {
+        font-size: 13px;
+    }
+    .h1-wilayah {
+        font-size: 25px;
+    }
+    .h4-wilayah {
+        font-size: 18px;
+    }
+    .content-provinsi {
+        height: 300px;
+        margin-top: -25px;
+    }
+    input.search-bar {
+        width: 200px;
+        font-size: 16px;
+    }
+    input::-webkit-input-placeholder {
+        font-size: 14px;
+    }
+    /*overlay content*/
+    #overlay-link a {
+        font-size: 14px;
+    }
+    .overlay-content {
+        width: 250px;
+        height: 200px;
+    }
+    .overlay-content h1 {
+        font-size: 22px;
+    }
+    .overlay-content a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 570px) {
+    .content-wilayah.no-detect:after {
+        font-size: 10px;
+    }
+    h1.h1-wilayah,
+    h4.h4-wilayah {
+        font-size: 20px;
+    }
+    .content-indonesia .card-title,
+    .content-global .card-title {
+        font-size: 16px;
+    }
+    .content-wilayah .card.text-white.bg-warning.mb-3,
+    .content-wilayah .card.text-white.bg-success.mb-3,
+    .content-wilayah .card.text-white.bg-danger.mb-3,
+    .card.text-white.bg-warning.mb-3.cards-provinsi,
+    .card.text-white.bg-success.mb-3.cards-provinsi,
+    .card.text-white.bg-danger.mb-3.cards-provinsi,
+    .card.text-white.bg-warning.mb-3,
+    .card.text-white.bg-success.mb-3,
+    .card.text-white.bg-danger.mb-3 {
+        width: 150px;
+        height: 75px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .card-body h5 {
+        font-size: 18px;
+    }
+    .card-body p {
+        font-size: 10px;
+    }
+    .card-body {
+        padding: 10px;
+    }
+    /*overlay content*/
+    #overlay-link a {
+        font-size: 12px;
+    }
+    .overlay-content {
+        width: 250px;
+        height: 200px;
+    }
+    .overlay-content h4,
+    .overlay-content a {
+        font-size: 14px;
+    }
+}
+@media (max-width: 440px) {
+    .content-wilayah.no-detect:after {
+        font-size: 8px;
+        margin-top: -25px;
+    }
+    h1.h1-wilayah,
+    h4.h4-wilayah {
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 16px;
+    }
+    .card-body {
+        padding: 5px;
+    }
+    .card-body h5 {
+        font-size: 14px;
+    }
+    .card-body p {
+        font-size: 8px;
+    }
+    .content-wilayah .card.text-white.bg-warning.mb-3,
+    .content-wilayah .card.text-white.bg-success.mb-3,
+    .content-wilayah .card.text-white.bg-danger.mb-3,
+    .card.text-white.bg-warning.mb-3.cards-provinsi,
+    .card.text-white.bg-success.mb-3.cards-provinsi,
+    .card.text-white.bg-danger.mb-3.cards-provinsi,
+    .card.text-white.bg-warning.mb-3,
+    .card.text-white.bg-success.mb-3,
+    .card.text-white.bg-danger.mb-3 {
+        width: 100px;
+        height: 55px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    input.search-bar {
+        width: 130px;
+        font-size: 10px;
+        height: 30px;
+    }
+    input::-webkit-input-placeholder {
+        font-size: 10px;
+    }
+    .overlay-button,
+    .search button {
+        width: 30px;
+        height: 30px;
+    }
+    .last-update {
+        font-size: 10px;
+    }
+    .content-wilayah {
+        margin-top: 100px;
+        height: 70px;
+    }
+    .content-provinsi,
+    .content-wilayah {
+        height: 200px;
+    }
+
+    .content-provinsi {
+        margin-top: -50px;
+    }
+
+    .content-global,
+    .content-indonesia {
+        height: 150px;
+    }
+    .content-indonesia .card-title,
+    .content-global .card-title {
+        font-size: 14px;
+    }
+    .text-global,
+    .text-indo {
+        width: 200px;
+        margin: 10px 0 10px 0;
+    }
+    .loading {
+        height: 70px;
+        padding-bottom: 15px;
+    }
+    /*overlay content*/
+    #overlay-link a {
+        font-size: 10px;
+    }
+    .overlay-content {
+        width: 250px;
+        height: 200px;
+    }
+    .overlay-content h4,
+    .overlay-content a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 370px) {
+    .content-indonesia .card-title,
+    .content-global .card-title {
+        font-size: 11px;
+    }
 }
